@@ -14,9 +14,7 @@ Also these instructions are probably forgetting a thing or two
 
 2. Click on Tampermonkey icon and go to dashboard.
 
-3. Press the + button in the upper right tab section of the Tampermonkey dashboard
-
-4. Paste the contents of cookies.user.js into there and save
+3. Go to https://destroyerbots.github.io/cookie-destroyer/cookies.user.js and install
 
 # Usage
 
