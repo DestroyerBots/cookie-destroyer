@@ -16,7 +16,7 @@ Also these instructions are probably forgetting a thing or two
 
 3. Press the + button in the upper right tab section of the Tampermonkey dashboard
 
-4. Paste the contents of cookies.js into there and save
+4. Paste the contents of cookies.user.js into there and save
 
 # Usage
 
