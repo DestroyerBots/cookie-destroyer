@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.1
+// @version      0.1.2
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -12,6 +12,7 @@
 // @include      *footaction*
 // @include      *champs*
 // @include      *converse*
+// @exclude      *stockx*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // ==/UserScript==
@@ -205,12 +206,12 @@
 
     const panelHtml = `
 <div id="pd-cookie-panel" style="position:fixed;z-index:99999999;left:0;top:0;background-color:white;border:1px solid black; padding:10px;">
-<button id="pd-clear-jar">Clear Jar</button><br />
+<button style="background-color: #f44336; color: white; padding: 3px;" id="pd-clear-jar">Clear Jar</button><br />
 <span>Cookie exists? </span><span style="color:red" id="pd-cookie-exists">false</span> <br/>
 <span>Cookie good? </span><span style="color:red" id="pd-cookie-good">false</span>
 <br /><br />
 <span>Harvested: </span><span id="pd-harvest-count">0</span><br />
-<button id="pd-save-cookies">Save</button>
+<button id="pd-save-cookies" style="background-color: #4CAF50; color:white; padding: 3px;">Save</button>
 <a id="pd-save-cookies-dl-anchor" style="display:none"></a>
 </div>
 `
@@ -268,12 +269,16 @@
         }
     }
 
+    let dontRefresh = false;
+
     function download(data) {
+        dontRefresh = true;
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
         let anchor = document.getElementById('pd-save-cookies-dl-anchor');
         anchor.setAttribute('href', dataStr);
         anchor.setAttribute('download', `cookies_${Date.now()}.json`);
         anchor.click();
+        dontRefresh = false;
     }
 
     function getCurrentSite() {
@@ -303,6 +308,7 @@
             if (cookie.val && cookie.val.includes('~0~')) {
                 document.getElementById("pd-cookie-good").innerHTML = "true"
                 document.getElementById('pd-cookie-good').style.color = "green"
+                if(dontRefresh) return;
                 let res = addCookie(cookie.val, site);
                 if (res) {
                     clearCookies();

@@ -10,11 +10,11 @@ Also these instructions are probably forgetting a thing or two
 
 # Installation
 
-1. Install Tampermonkey https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en
+1. [Install Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
 
 2. Click on Tampermonkey icon and go to dashboard.
 
-3. Go to https://destroyerbots.github.io/cookie-destroyer/cookies.user.js and install
+3. Go to [the script source](https://destroyerbots.github.io/cookie-destroyer/cookies.user.js) and install
 
 # Usage
 
