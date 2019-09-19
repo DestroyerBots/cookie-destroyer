@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.2
+// @version      0.1.3
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -12,6 +12,7 @@
 // @include      *footaction*
 // @include      *champs*
 // @include      *converse*
+// @include      *dickssportinggoods*
 // @exclude      *stockx*
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -71,6 +72,8 @@
         'adidas-ch': 'https://www.adidas.ch',
         'adidas-ca': 'https://www.adidas.ca',
         'adidas-nl': 'https://www.adidas.nl',
+        /* Dicks */
+        'dicks': 'https://www.dickssportinggoods.com'
     }
 
     // flip and simplify urls
