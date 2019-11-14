@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.3
+// @version      0.1.4
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -13,6 +13,7 @@
 // @include      *champs*
 // @include      *converse*
 // @include      *dickssportinggoods*
+// @include      *yeezysupply*
 // @exclude      *stockx*
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -72,6 +73,7 @@
         'adidas-ch': 'https://www.adidas.ch',
         'adidas-ca': 'https://www.adidas.ca',
         'adidas-nl': 'https://www.adidas.nl',
+        'yeezysupply-dw': 'https://www.yeezysupply.com',
         /* Dicks */
         'dicks': 'https://www.dickssportinggoods.com'
     }
@@ -216,6 +218,9 @@
 <span>Harvested: </span><span id="pd-harvest-count">0</span><br />
 <button id="pd-save-cookies" style="background-color: #4CAF50; color:white; padding: 3px;">Save</button>
 <a id="pd-save-cookies-dl-anchor" style="display:none"></a>
+<div id="pd-running" width="5" height="5" style="width:20px; height: 20px; background-color:#4CAF50; float:right; text-align:center;">
+<span id="pd-float">→</span>
+</div>
 </div>
 `
     document.getElementsByTagName('body')[0].innerHTML += panelHtml;
@@ -226,7 +231,7 @@
     }
 
     function clearSavedCookies() {
-        GM_setValue('savedCookies', {});
+        if(confirm("Clear cookies?")) GM_setValue('savedCookies', {});
     }
 
     function addCookie(value, site) {
@@ -298,6 +303,34 @@
     document.getElementById('pd-clear-jar').addEventListener('click', (e) => {
         e.preventDefault();
         clearSavedCookies();
+    });
+
+    let floatLeft = true;
+    document.getElementById('pd-running').addEventListener('click', (e) => {
+        if(floatLeft) {
+            document.getElementById('pd-cookie-panel').style.left = null;
+            document.getElementById('pd-cookie-panel').style.right = '0';
+            document.getElementById('pd-float').innerText = '←'
+            floatLeft = false;
+        } else {
+            document.getElementById('pd-cookie-panel').style.right = null;
+            document.getElementById('pd-cookie-panel').style.left = '0';
+            document.getElementById('pd-float').innerText = '→'
+            floatLeft = true;
+        }
+    });
+
+    document.addEventListener('keypress', (e) => {
+        if(e.shiftKey) {
+            console.log(e.key);
+            if(e.key === 'S') {
+                dontRefresh = true;
+                document.getElementById('pd-running').style['background-color'] = 'red';
+            } else if (e.key === 'C') {
+                dontRefresh = false;
+                document.getElementById('pd-running').style['background-color'] = '#4CAF50';
+            }
+        }
     })
 
     setInterval(() => {
@@ -308,7 +341,8 @@
         if (cookie && cookie.key && cookie.key.includes("_abck")) {
             document.getElementById("pd-cookie-exists").innerHTML = "true"
             document.getElementById('pd-cookie-exists').style.color = "green"
-            if (cookie.val && cookie.val.includes('~0~')) {
+            if (cookie.val && (cookie.val.includes('~0~') 
+            || (document.location.href.includes('yeezysupply') && cookie.val.includes("==")))) {
                 document.getElementById("pd-cookie-good").innerHTML = "true"
                 document.getElementById('pd-cookie-good').style.color = "green"
                 if(dontRefresh) return;
