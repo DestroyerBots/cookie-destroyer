@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.4
+// @version      0.1.5
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -11,9 +11,11 @@
 // @include      *eastbay*
 // @include      *footaction*
 // @include      *champs*
-// @include      *converse*
+// @include      *converse*a
 // @include      *dickssportinggoods*
 // @include      *yeezysupply*
+// @include      *size.co.uk*
+// @include      *footpatrol*
 // @exclude      *stockx*
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -75,7 +77,12 @@
         'adidas-nl': 'https://www.adidas.nl',
         'yeezysupply-dw': 'https://www.yeezysupply.com',
         /* Dicks */
-        'dicks': 'https://www.dickssportinggoods.com'
+        'dicks': 'https://www.dickssportinggoods.com',
+        /* Mesh */
+        'size': 'https://www.size.co.uk',
+        'footpatrol': 'https://www.footpatrol.com',
+        // 'jdsports': 'https://www.jdsports.co.uk',
+        // 'thehipstore': 'https://www.thehipstore.co.uk',
     }
 
     // flip and simplify urls
@@ -331,7 +338,14 @@
                 document.getElementById('pd-running').style['background-color'] = '#4CAF50';
             }
         }
-    })
+    });
+
+    function isValid({val}) {
+        const href = document.location.href
+        return ((href.includes('footpatrol.com') || href.includes('yeezysupply')) && val.includes('=='))
+         || (href.includes('size.co.uk') && val.includes('=~-1'))
+         || (val.includes('~0~'));
+    }
 
     setInterval(() => {
         let site = getCurrentSite();
@@ -341,8 +355,7 @@
         if (cookie && cookie.key && cookie.key.includes("_abck")) {
             document.getElementById("pd-cookie-exists").innerHTML = "true"
             document.getElementById('pd-cookie-exists').style.color = "green"
-            if (cookie.val && (cookie.val.includes('~0~') 
-            || (document.location.href.includes('yeezysupply') && cookie.val.includes("==")))) {
+            if (cookie.val && isValid(cookie)) {
                 document.getElementById("pd-cookie-good").innerHTML = "true"
                 document.getElementById('pd-cookie-good').style.color = "green"
                 if(dontRefresh) return;
