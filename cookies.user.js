@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.5
+// @version      0.1.6
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -16,6 +16,7 @@
 // @include      *yeezysupply*
 // @include      *size.co.uk*
 // @include      *footpatrol*
+// @include      *finishline.com*
 // @exclude      *stockx*
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -83,6 +84,8 @@
         'footpatrol': 'https://www.footpatrol.com',
         // 'jdsports': 'https://www.jdsports.co.uk',
         // 'thehipstore': 'https://www.thehipstore.co.uk',
+        /* FNL */
+        'finishline': 'https://www.finishline.com',
     }
 
     // flip and simplify urls
@@ -344,6 +347,7 @@
         const href = document.location.href
         return ((href.includes('footpatrol.com') || href.includes('yeezysupply')) && val.includes('=='))
          || (href.includes('size.co.uk') && val.includes('=~-1'))
+         || (href.includes('finishline.com') && !val.includes("=="))
          || (val.includes('~0~'));
     }
 
