@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.6
+// @version      0.1.7
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -345,8 +345,8 @@
 
     function isValid({val}) {
         const href = document.location.href
-        return ((href.includes('footpatrol.com') || href.includes('yeezysupply')) && val.includes('=='))
-         || (href.includes('size.co.uk') && val.includes('=~-1'))
+        return ((href.includes('footpatrol.com')) && val.includes('=='))
+         || ((href.includes('size.co.uk') || href.includes('yeezysupply')) && val.includes('=~-1'))
          || (href.includes('finishline.com') && !val.includes("=="))
          || (val.includes('~0~'));
     }
