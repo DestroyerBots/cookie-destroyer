@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.12
+// @version      0.1.13
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -349,6 +349,7 @@
          || ((href.includes('size.co.uk')) && val.includes('=~-1'))
          || ((href.includes('yeezysupply')) && val.includes('=='))
          || (href.includes('finishline.com') && !val.includes("=="))
+         || (href.includes('adidas.') && val.includes('=~-1'))
          || (val.includes('~0~'));
     }
 
