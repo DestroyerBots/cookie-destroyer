@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.13
+// @version      0.1.14
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -123,16 +123,16 @@
         if (a) {
             var A = new ArrayBuffer(68);
             l = new Uint8Array(A), d = new Uint32Array(A)
-        }!i.JS_MD5_NO_NODE_JS && Array.isArray || (Array.isArray = function (t) {
+        } !i.JS_MD5_NO_NODE_JS && Array.isArray || (Array.isArray = function (t) {
             return "[object Array]" === Object.prototype.toString.call(t)
         }), !a || !i.JS_MD5_NO_ARRAY_BUFFER_IS_VIEW && ArrayBuffer.isView || (ArrayBuffer.isView = function (t) {
             return "object" == typeof t && t.buffer && t.buffer.constructor === ArrayBuffer
         });
         var b = function (r) {
-                return function (e) {
-                    return new t(!0).update(e)[r]()
-                }
-            },
+            return function (e) {
+                return new t(!0).update(e)[r]()
+            }
+        },
             v = function () {
                 var r = b("hex");
                 h && (r = w(r)), r.create = function () {
@@ -241,7 +241,7 @@
     }
 
     function clearSavedCookies() {
-        if(confirm("Clear cookies?")) GM_setValue('savedCookies', {});
+        if (confirm("Clear cookies?")) GM_setValue('savedCookies', {});
     }
 
     function addCookie(value, site) {
@@ -317,7 +317,7 @@
 
     let floatLeft = true;
     document.getElementById('pd-running').addEventListener('click', (e) => {
-        if(floatLeft) {
+        if (floatLeft) {
             document.getElementById('pd-cookie-panel').style.left = null;
             document.getElementById('pd-cookie-panel').style.right = '0';
             document.getElementById('pd-float').innerText = '←'
@@ -331,9 +331,9 @@
     });
 
     document.addEventListener('keypress', (e) => {
-        if(e.shiftKey) {
+        if (e.shiftKey) {
             console.log(e.key);
-            if(e.key === 'S') {
+            if (e.key === 'S') {
                 dontRefresh = true;
                 document.getElementById('pd-running').style['background-color'] = 'red';
             } else if (e.key === 'C') {
@@ -343,14 +343,40 @@
         }
     });
 
-    function isValid({val}) {
-        const href = document.location.href
-        return ((href.includes('footpatrol.com')) && !val.includes('=='))
-         || ((href.includes('size.co.uk')) && val.includes('=~-1'))
-         || ((href.includes('yeezysupply')) && val.includes('=='))
-         || (href.includes('finishline.com') && !val.includes("=="))
-         || (href.includes('adidas.') && val.includes('=~-1'))
-         || (val.includes('~0~'));
+    function isChallenge(cookie) {
+        if (!cookie) return false;
+        return cookie.indexOf('||') != -1 && cookie.indexOf('~-1~||-1||~-1') == -1;
+    }
+
+    function isFtlEu(href) {
+        return href.includes('footlocker') && !href.includes('.com') 
+            && !href.includes('.ca');
+    }
+
+    function isValid({ val }) {
+        if(isChallenge(val)) {
+            return false;
+        }
+        const url = document.location.href;
+        const cookie = val;
+        if (url && (url.includes('yeezysupply'))) {
+            return cookie.indexOf('==') > -1;
+          } else if (url && (url.includes('jdsports.com'))) {
+            return cookie.indexOf('==') > -1;
+          } else if (url && url.includes('finishline')) {
+            return cookie.indexOf('==') == -1;
+          } else if (url && (url.includes('size'))) {
+            return cookie.indexOf(`=~-1`) > -1;
+          } else if (url && (isFtlEu(url))) {
+            return cookie.indexOf(`=~-1`) > -1;
+          } else if (url && url.includes('adidas')) {
+            return cookie.indexOf(`=~-1`) > -1;
+          } else if (url && (url.includes('footpatrol') 
+            || url.includes('hipstore') || url.includes('jdsports.co.uk'))) {
+            return cookie.indexOf(`==`) == -1;
+          } else {
+            return cookie.indexOf('~0~') > -1;
+          }
     }
 
     setInterval(() => {
@@ -364,7 +390,7 @@
             if (cookie.val && isValid(cookie)) {
                 document.getElementById("pd-cookie-good").innerHTML = "true"
                 document.getElementById('pd-cookie-good').style.color = "green"
-                if(dontRefresh) return;
+                if (dontRefresh) return;
                 let res = addCookie(cookie.val, site);
                 if (res) {
                     clearCookies();
