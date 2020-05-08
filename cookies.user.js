@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.14
+// @version      0.1.15
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -86,6 +86,7 @@
         // 'thehipstore': 'https://www.thehipstore.co.uk',
         /* FNL */
         'finishline': 'https://www.finishline.com',
+        'jdsports-us': 'https://www.jdsports.com',
     }
 
     // flip and simplify urls
