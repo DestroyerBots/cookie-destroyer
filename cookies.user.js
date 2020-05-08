@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.15
+// @version      0.1.16
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -17,6 +17,7 @@
 // @include      *size.co.uk*
 // @include      *footpatrol*
 // @include      *finishline.com*
+// @include      *jdsports.com*
 // @exclude      *stockx*
 // @grant        GM_setValue
 // @grant        GM_getValue
