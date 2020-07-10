@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.16
+// @version      0.1.17
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -366,7 +366,7 @@
           } else if (url && (url.includes('jdsports.com'))) {
             return cookie.indexOf('==') > -1;
           } else if (url && url.includes('finishline')) {
-            return cookie.indexOf('==') == -1;
+            return cookie.indexOf('==') == -1 && cookie.indexOf(`~0~`) == -1;
           } else if (url && (url.includes('size'))) {
             return cookie.indexOf(`=~-1`) > -1;
           } else if (url && (isFtlEu(url))) {
