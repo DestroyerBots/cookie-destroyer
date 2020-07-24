@@ -377,6 +377,15 @@
             || url.includes('hipstore') || url.includes('jdsports.co.uk'))) {
             return cookie.indexOf(`==`) == -1;
           } else {
+            if(url.includes('footlocker.ca') || url.includes('champssports')) {
+                return cookie.indexOf("=~-1~-1~-1") > -1;
+            }
+            if(url.includes('kidsfootlocker') ) {
+                return cookie.indexOf("==~-1~-1~-1") > -1;
+            }
+            if(url.includes('eastbay') || url.includes('footaction') || url.includes('footlocker')) {
+                return cookie.indexOf('==') > -1;
+            }
             return cookie.indexOf('~0~') > -1;
           }
     }
