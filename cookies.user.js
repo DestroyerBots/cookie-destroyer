@@ -3,7 +3,7 @@
 // @namespace    http://cookies.projectdestroyer.com
 // @updateURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
 // @downloadURL    https://destroyerbots.github.io/cookie-destroyer/cookies.user.js
-// @version      0.1.18
+// @version      0.1.19
 // @description  let's go 0 to 100 real quick (for real this time)
 // @author       Ryan
 // @include      *adidas*
@@ -384,7 +384,7 @@
                 return cookie.indexOf("==~-1~-1~-1") > -1;
             }
             if(url.includes('eastbay') || url.includes('footaction') || url.includes('footlocker')) {
-                return cookie.indexOf('==') > -1;
+                return cookie.indexOf('==') === -1;
             }
             return cookie.indexOf('~0~') > -1;
           }
