@@ -362,9 +362,9 @@
         const url = document.location.href;
         const cookie = val;
         if (url && (url.includes('yeezysupply'))) {
-            return cookie.indexOf('==') > -1;
+            return cookie.indexOf('=~-1') == -1;
           } else if (url && (url.includes('jdsports.com'))) {
-            return cookie.indexOf('==') > -1;
+            return cookie.indexOf('=~-1') == -1;
           } else if (url && url.includes('finishline')) {
             return cookie.indexOf('==') == -1 && cookie.indexOf(`~0~`) == -1;
           } else if (url && (url.includes('size'))) {
